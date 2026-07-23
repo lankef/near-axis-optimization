@@ -1,0 +1,10 @@
+2026-07-22 15:23:37.222889: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit__objective_vmap] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-07-22 15:23:52.056176: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 2m14.833503304s
+
+********************************
+[Compiling module jit__objective_vmap] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+[2026-07-22T15:51:28.545] error: *** JOB 14579958 ON gl019 CANCELLED AT 2026-07-22T15:51:28 DUE to SIGNAL Terminated ***

@@ -131,6 +131,16 @@ if os.path.exists("best_x.npy"):
     restart_stats = objective(x_flat_init, w_aspect, w_anisotropy, w_iota, w_p, 10, full_mode=True)
     print(restart_stats)
 
+if os.path.exists("pass_2/best_x.npy"):
+    x_flat_init = jnp.array(np.load("pass_2/best_x.npy"))
+    path = 'pass_3/'
+    Path(path).mkdir(parents=True, exist_ok=True)
+    Path(path+'global_steps').mkdir(parents=True, exist_ok=True)
+    Path(path+'population_eq').mkdir(parents=True, exist_ok=True)
+    print('*** restarting ***')
+    restart_stats = objective(x_flat_init, w_aspect, w_anisotropy, w_iota, w_p, 10, full_mode=True)
+    print(restart_stats)
+
 # Instantiate the search strategy
 es = CMA_ES(population_size=population_size, solution=x_flat_init)
 # The original initial std is 1.0. Increase it to hopefully find a better sln

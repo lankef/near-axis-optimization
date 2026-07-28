@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scratch/lf2869/project/near-axis-optimization/optimization.py", line 255, in <module>
+    objective_vmap(sorted_population[:16])
+TypeError: _objective_vmap() missing 4 required positional arguments: 'a', 'b', 'c', and 'd'
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

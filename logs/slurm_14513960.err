@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "/scratch/lf2869/project/near_axis_optimization/optimization.py", line 235, in <module>
-    p_edge_eff = (p00_avg + p20_avg*eps**2)
-                                    ^^^
-NameError: name 'eps' is not defined. Did you mean: 'es'?

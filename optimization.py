@@ -27,13 +27,13 @@ from jax.lax import while_loop
 # In[4]:
 
 
-target_iota = 0.2
+target_iota = 0.1
 target_anisotropy = 1e-2
 target_aspect = 10.
 target_beta = 0.05
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-
+std_init = 3.0
 
 def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False):
     in_dict = unravel_x(x_flat)
@@ -140,11 +140,21 @@ if os.path.exists("pass_2/best_x.npy"):
     print('*** restarting ***')
     restart_stats = objective(x_flat_init, w_aspect, w_anisotropy, w_iota, w_p, 10, full_mode=True)
     print(restart_stats)
+    
+if os.path.exists("pass_3/best_x.npy"):
+    x_flat_init = jnp.array(np.load("pass_3/best_x.npy"))
+    path = 'pass_4/'
+    Path(path).mkdir(parents=True, exist_ok=True)
+    Path(path+'global_steps').mkdir(parents=True, exist_ok=True)
+    Path(path+'population_eq').mkdir(parents=True, exist_ok=True)
+    print('*** restarting ***')
+    restart_stats = objective(x_flat_init, w_aspect, w_anisotropy, w_iota, w_p, 10, full_mode=True)
+    print(restart_stats)
 
 # Instantiate the search strategy
 es = CMA_ES(population_size=population_size, solution=x_flat_init)
 # The original initial std is 1.0. Increase it to hopefully find a better sln
-params = es.default_params.replace(std_init=5.0)
+params = es.default_params.replace(std_init=std_init)
 
 # Initialize state
 key = jax.random.key(0)

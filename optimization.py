@@ -23,81 +23,6 @@ from functools import partial
 from jax.lax import while_loop
 
 
-
-# In[4]:
-
-
-target_iota = 0.1
-target_anisotropy = 1e-2
-target_aspect = 10.
-target_beta = 0.05
-population_size = 200
-w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-std_init = 3.0
-
-def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False):
-    in_dict = unravel_x(x_flat)
-    eq = solve_order_6(x_flat, m, padded=False)
-    anisotropy = rms_anisotropy(eq)
-    
-    psi_crit, _, _ = eq.get_psi_crit()
-    eps_crit_val = jnp.sqrt(psi_crit)
-    eps_conv_val = eps_conv(eq)
-    eps = jnp.minimum(eps_conv_val, eps_crit_val)
-    aspect = eq.aspect_ratio_eps(eps)
-
-    # Iota
-    iota_a = jnp.real(eq.iota.eval(psi=0, chi=0, phi=0))
-
-    # Effective field strength at the edge
-    B_denom_20 = jnp.real(in_dict['B20'])
-    B_denom_0 = jnp.real(in_dict['B0'])
-    B_denom_edge_eff = (B_denom_0 + B_denom_20*eps**2)
-    # Effective pressure at the edge
-    p20_avg = jnp.real(jnp.average(eq.p_perp[2][0].content))
-    p00_avg = jnp.real(jnp.average(eq.p_perp[0][0].content))
-    p_edge_eff = (p00_avg + p20_avg*eps**2)
-    p_axis_eff = p00_avg
-    # # beta_edge eff
-    # beta_axis_eff = p00_avg*B_denom_0
-    # beta_edge_eff = p_edge_eff*B_denom_edge_eff
-    B2_eff = 1/(B_denom_0 + B_denom_20 * eps**2)
-    term1 = w_aspect * (
-        jnp.maximum(aspect - target_aspect, 0) / target_aspect
-    )**2
-    term2 = w_anisotropy * (
-        jnp.maximum(anisotropy - target_anisotropy, 0) / target_anisotropy
-    )**2
-    term3 = w_iota * (
-        jnp.maximum(jnp.abs(target_iota) - jnp.abs(iota_a), 0) / target_iota
-    )**2
-    # term4 = w_p * (
-    #     jnp.maximum(p20_avg, 0) / p20_avg
-    # )**2
-    term4 = w_p * (
-        jnp.maximum(p_edge_eff - p_axis_eff, 0) / p_axis_eff
-    )**2
-    out = term1 + term2 + term3 + term4
-    if full_mode:
-        return {
-            'eps_crit': eps_crit_val,
-            'eps_conv': eps_conv_val,
-            'aspect': aspect,
-            'anisotropy': anisotropy,
-            'p_edge_eff': p_edge_eff,
-            'p_axis_eff': p_axis_eff,
-            'iota_a': iota_a,
-        }
-            
-    return out
-
-def obj_wrapped(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m):
-    out = objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m)
-    if np.isfinite(out):
-        return out
-    else:
-        return 1e10
-
 def _objective_vmap(x, a, b, c, d):
     return jax.vmap(
         lambda x_, a_, b_, c_, d_: objective(x_, a_, b_, c_, d_, 10),
@@ -247,15 +172,6 @@ jnp.save(path + 'best_x.npy', best_x)
 
 plt.plot(fitness[argsort_fitness])
 plt.yscale('log')
-
-
-# In[41]:
-
-
-objective_vmap(sorted_population[:16])
-
-
-# In[43]:
 
 
 for i in range(len(sorted_fitness)):

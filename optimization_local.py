@@ -25,7 +25,34 @@ from jax.lax import while_loop
 from shared import * 
 
 x_flat_init = jnp.array(np.load("best_x.npy"))
-obj_fin = jit(lambda x, args: obj_wrapped(x, w_aspect, w_anisotropy, w_iota, w_p, 10))
+
+# LBFGS (via optimistix) runs its whole iteration loop as a single compiled
+# lax.while_loop, so there's no Python-level hook to report progress from.
+# jax.debug.callback runs on the host at actual runtime (once per real
+# objective evaluation, not just once at trace time), so it's used here to
+# print progress periodically. Note this counts *objective evaluations*,
+# not accepted LBFGS steps -- LBFGS's backtracking line search calls the
+# objective more than once per step, so this undercounts true iterations
+# somewhat, but tracks progress closely enough to tell whether it's stuck.
+_progress_state = {'n': 0}
+_report_every = 20
+
+def _report_progress(aspect, loss):
+    n = _progress_state['n'] + 1
+    _progress_state['n'] = n
+    if n % _report_every == 0:
+        print(
+            f'[eval {n}] aspect={float(aspect):.4f} loss={float(loss):.4e}',
+            flush=True,
+        )
+
+def obj_fin_full(x, args):
+    out = objective(x, w_aspect, w_anisotropy, w_iota, w_p, 10, full_mode=True)
+    loss = jnp.clip(out['loss'], a_min=-1e10, a_max=1e10)
+    jax.debug.callback(_report_progress, out['aspect'], loss, ordered=True)
+    return loss
+
+obj_fin = jit(obj_fin_full)
 
 solver = optx.LBFGS(
     rtol=1e-5,

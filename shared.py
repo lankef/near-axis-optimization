@@ -322,6 +322,7 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False):
             'p_edge_eff': p_edge_eff,
             'p_axis_eff': p_axis_eff,
             'iota_a': iota_a,
+            'loss': out,
         }
             
     return out

@@ -1,11 +1,11 @@
 #!/bin/bash -l
 #SBATCH --account=torch_pr_292_courant
 #SBATCH --cpus-per-task=4
-#SBATCH --time=10:00:00
+#SBATCH --time=2:00:00
 #SBATCH --output=logs/slurm_%A.out
 #SBATCH --error=logs/slurm_%A.err
-#SBATCH --mem=100G
-#SSSSSSBATCH --gres=gpu:l40s:1
+#SBATCH --mem=60G
+#SBATCH --gres=gpu:l40s:1
 
 # Pick the script for this array index
 

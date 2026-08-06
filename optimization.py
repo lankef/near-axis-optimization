@@ -179,7 +179,7 @@ for i in range(len(sorted_fitness)):
         fin_iota = iota_axis(eq_fin)
         p20_avg = jnp.real(jnp.average(eq_fin.p_perp[2][0].content))
         p00_avg = jnp.real(jnp.average(eq_fin.p_perp[0][0].content))
-        p_edge_eff = (p00_avg + p20_avg*eps**2)
+        p_edge_eff = (p00_avg + p20_avg*fin_eps_conv**2)
         p_axis_eff = p00_avg
         print(
             'Δ:', f'{fin_anisotropy:>12.4e}', '    '

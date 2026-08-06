@@ -31,7 +31,7 @@ target_aspect = 10.
 target_beta = 0.05
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-std_init = 3.0
+std_init = 4.0
 
 
 def spec_weight(n):

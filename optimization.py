@@ -85,7 +85,7 @@ key, key_ask, key_eval = jax.random.split(key, 3)
 population, state = es.ask(key_ask, state, params)
 
 fitness1 = objective_vmap(population, w_aspect, w_anisotropy, w_iota, w_p)
-num_generations = 2000
+num_generations = 4000
 fitness_list = []
 i_list = []
 time_tot = 0

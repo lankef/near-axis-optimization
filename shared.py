@@ -27,11 +27,11 @@ RZ_clip = 0.3 # fixing min and max R and Z coeffs to prevent crazy axes
 # Targets
 target_iota = 0.1
 target_anisotropy = 1e-2
-target_aspect = 25.
+target_aspect = 10.
 target_beta = 0.05
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-std_init = 0.2
+std_init = 0.15
 
 
 def spec_weight(n):

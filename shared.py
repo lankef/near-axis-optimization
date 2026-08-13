@@ -11,12 +11,15 @@ jax.config.update("jax_persistent_cache_min_entry_size_bytes", -1)
 jax.config.update("jax_persistent_cache_min_compile_time_secs", 0)
 jax.config.update("jax_persistent_cache_enable_xla_caches", "xla_gpu_per_fusion_autotune_cache_dir")
 
-from jax import flatten_util, jit, jacfwd
-from functools import partial
+from jax import flatten_util, jit
 from jax.lax import while_loop
 
 # Constants and resolution
-static_freq = 100 # low-pass filter freq
+# static_max_freq sets the FFT tensor size in iterate_looped (len_tensor =
+# min(len_phi, 2*static_freq)). HLO dumps of fun showed cusolver LU on
+# c128[400,400] at order 4 with static_freq=100; matching traced_freq cuts
+# that to 2*40=80 modes and shrinks the tensorsolve markedly.
+static_freq = 100 # low-pass / FFT-tensor freq (was 100; see dump_fun_hlo.py)
 traced_freq = 40 # low-pass filter freq
 len_phi = 100 # number of phi sample points
 phis_2pi = jnp.linspace(0,2*jnp.pi, len_phi, endpoint=False)
@@ -71,7 +74,8 @@ init_dict = {
 
 x_flat_init, unravel_x = flatten_util.ravel_pytree(init_dict)
 
-@partial(jit, static_argnames='padded')
+# Not jitted here on purpose: callers wrap objective / fun in a single outer
+# jit. Nesting jit(solve_order_6) inside jit(fun) duplicates XLA modules.
 def solve_order_6(x_flat, m=10, padded=True):
     in_dict = unravel_x(x_flat)
     
@@ -221,7 +225,9 @@ def divergence_rate(eq):
 def eps_conv(eq):
     return 1 / divergence_rate(eq)
 
-@jit
+# Helpers below are intentionally not @jit: the notebook wraps objective /
+# grad(objective) in a single outer jit. Nested jit fragments the AD graph
+# (dump_jac_compare.py saw O(1e5) pjit nodes inside grad jaxprs).
 def p_rms_vol(eq, eps, eps2, n_max=float('inf')):
     vol = eq.volume_eps(eps=eps, n_max=n_max)
     vol2 = eq.volume_eps(eps=eps2, n_max=n_max)
@@ -235,22 +241,18 @@ def p_rms_vol(eq, eps, eps2, n_max=float('inf')):
     ))
     return p_rms
 
-@jit
 def vol_conv(eq):
     eps = eps_conv(eq)
     return eq.volume_eps(eps)
 
-@jit
 def aspect_conv(eq):
     eps = eps_conv(eq)
     return eq.aspect_ratio_eps(eps)
 
-@jit
 def aspect_crit(eq):
     psi, _, _ = eq.get_psi_crit()
     return eq.aspect_ratio_eps(jnp.sqrt(psi))
 
-@jit
 def rms_anisotropy(eq):
     eps = eps_conv(eq)
     int_anisotropy = jnp.real(
@@ -258,7 +260,6 @@ def rms_anisotropy(eq):
     )
     return jnp.sqrt(int_anisotropy/vol_conv(eq))
 
-@jit
 def rms_p(eq):
     eps = eps_conv(eq)
     int_p_perp = jnp.real(
@@ -266,15 +267,14 @@ def rms_p(eq):
     )
     return jnp.sqrt(int_p_perp/vol_conv(eq))
 
-@jit 
 def iota_axis(eq):
     return jnp.real(eq.iota.eval(psi=0, chi=0, phi=0))
 
-def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False):
+def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, padded=True):
     in_dict = unravel_x(x_flat)
-    eq = solve_order_6(x_flat, m, padded=False)
+    eq = solve_order_6(x_flat, m, padded=padded)
     anisotropy = rms_anisotropy(eq)
-    
+
     psi_crit, _, _ = eq.get_psi_crit()
     eps_crit_val = jnp.sqrt(psi_crit)
     eps_conv_val = eps_conv(eq)

@@ -23,9 +23,14 @@ population = jnp.load("./population.npy")
 x_fin = population[jnp.argmin(fitness)]
 
 m_opt = 10
+# padded=False on purpose: with padded=True, `ChiPhiEpsFunc.append` in the
+# runtime pyAQSC clone falls into `elif jnp.array(item).ndim!=0` for
+# ChiPhiFuncPadded inputs (its isinstance check only covers ChiPhiFunc),
+# raising TypeError from `iterate_2`. Non-padded backend takes the same
+# path and works without a library-side fix.
 fun = lambda x: objective(
     x, w_aspect, w_anisotropy, w_iota, w_p, m_opt,
-    full_mode=False, padded=True,
+    full_mode=False, padded=False,
 )
 
 # Primal-only JIT. Order-6 reverse-mode AD (`jax.grad(fun)`) unrolls a

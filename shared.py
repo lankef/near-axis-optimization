@@ -159,7 +159,7 @@ def solve_order_6(x_flat, m=10, padded=True):
         tol_riccati=1e-8,
         max_iter_riccati=50,
         n_shooting_riccati=1000,
-        padded=padded
+        # padded=padded
     )
     equilibrium = aqsc.iterate_2(
         equilibrium,

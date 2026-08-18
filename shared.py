@@ -30,7 +30,7 @@ RZ_clip = 0.3 # fixing min and max R and Z coeffs to prevent crazy axes
 # Targets
 target_iota = 0.1
 target_anisotropy = 1e-2
-target_aspect = 25.
+target_aspect = 10.
 target_beta = 0.05
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
@@ -159,7 +159,7 @@ def solve_order_6(x_flat, m=10, padded=True):
         tol_riccati=1e-8,
         max_iter_riccati=50,
         n_shooting_riccati=1000,
-        # padded=padded
+        padded=padded
     )
     equilibrium = aqsc.iterate_2(
         equilibrium,

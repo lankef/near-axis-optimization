@@ -1,0 +1,14 @@
+2026-08-17 17:19:49.199990: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit__objective_vmap] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-08-17 17:20:22.538720: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 2m33.338830919s
+
+********************************
+[Compiling module jit__objective_vmap] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+/scratch/lf2869/conda_envs/desc/lib/python3.12/site-packages/matplotlib/cbook.py:1719: ComplexWarning: Casting complex values to real discards the imaginary part
+  return math.isfinite(val)
+/scratch/lf2869/conda_envs/desc/lib/python3.12/site-packages/matplotlib/cbook.py:1355: ComplexWarning: Casting complex values to real discards the imaginary part
+  return np.asarray(x, float)
+[2026-08-17T19:31:05.609] error: *** JOB 15918901 ON gl006 CANCELLED AT 2026-08-17T19:31:05 DUE to SIGNAL Terminated ***

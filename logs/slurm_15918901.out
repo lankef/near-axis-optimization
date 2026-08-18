@@ -1,0 +1,270 @@
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+i 0 time 3.410684585571289 eps_crit 1.000563198607469e-15 0.004505452767480644 eps_conv 6.628546208504358e-13 0.0034032094173421577
+min 2896.22942710338 mean 4.124797685660754e+20
+#nan 30
+i 10 time 3.38865065574646 eps_crit 9.825165108871152e-16 0.00410661371491006 eps_conv 8.731767718618681e-11 0.0035301617174859274
+min 2513.8030526572197 mean 2.319014945353031e+16
+#nan 32
+i 20 time 3.4037814140319824 eps_crit 1.037688502169424e-15 0.004312292799589477 eps_conv 4.406488444079341e-10 0.003722208595499615
+min 2643.8195114651276 mean 912329036503899.8
+#nan 21
+i 30 time 3.401620864868164 eps_crit 1.0785918737672513e-15 0.006307202754335351 eps_conv 2.2631897686035622e-07 0.003583589887028057
+min 2229.0112632679743 mean 3471512681.0503883
+#nan 8
+i 40 time 3.423370122909546 eps_crit 1.0932109302033653e-15 0.008343293487039966 eps_conv 0.0004251151396022628 0.0063876977951749505
+min 659.0518649270036 mean 10059.406224039434
+#nan 4
+i 50 time 3.3912384510040283 eps_crit 1.1073347604347875e-15 0.01091346067684639 eps_conv 0.0004658165480476196 0.009046021537163986
+min 358.9201423442601 mean 3909.632457687954
+#nan 3
+i 60 time 3.3989264965057373 eps_crit 1.1026512504719067e-15 0.01305558434805935 eps_conv 0.0006857088471244411 0.01264646392222641
+min 170.36318595385652 mean 2858.220658461173
+#nan 3
+i 70 time 3.4071083068847656 eps_crit 1.0972265042273645e-15 0.018871330673895462 eps_conv 0.001295849071778947 0.013584877817881525
+min 123.86431756092595 mean 804.8745809017892
+#nan 5
+i 80 time 3.400042772293091 eps_crit 1.0942121492368083e-15 0.019087012028031154 eps_conv 0.0015089232105959167 0.015723743880151162
+min 82.43458481369092 mean 368.08492950224075
+#nan 6
+i 90 time 3.4228148460388184 eps_crit 1.0964965137908675e-15 0.019040642417259147 eps_conv 0.005012648162631018 0.017468410424845558
+min 71.73092306596155 mean 203.26122910345902
+#nan 5
+i 100 time 3.3818471431732178 eps_crit 1.0851652886367997e-15 0.022319562799920048 eps_conv 0.007598394581573722 0.01921516290799585
+min 47.609246062200185 mean 132.17140141023816
+#nan 6
+i 110 time 3.386868953704834 eps_crit 1.0847421581890972e-15 0.02331807113763798 eps_conv 0.007160925998879615 0.01968681738424409
+min 45.065454705198725 mean 106.10365121568007
+#nan 6
+i 120 time 3.393176555633545 eps_crit 1.0920994921875801e-15 0.02332292697276714 eps_conv 0.010199489934769369 0.02065241626105004
+min 41.96528650133273 mean 81.66632093100239
+#nan 2
+i 130 time 3.4068191051483154 eps_crit 1.076476138042219e-15 0.025503315615180835 eps_conv 0.005287019047530096 0.0242262809646079
+min 26.43778444704507 mean 68.95962648270836
+#nan 5
+i 140 time 3.4071192741394043 eps_crit 1.070886051647999e-15 0.02526127515955985 eps_conv 0.007858868877139123 0.024738913258508445
+min 29.125535229522608 mean 51.1917213417484
+#nan 8
+i 150 time 3.435716390609741 eps_crit 1.07640081296341e-15 0.026764255008427166 eps_conv 0.014242075246336344 0.028052403232305085
+min 20.437191156004456 mean 37.607681625858035
+#nan 2
+i 160 time 3.402583360671997 eps_crit 1.0825883447088098e-15 0.02849682513368364 eps_conv 0.014987460476704406 0.02906702598293317
+min 18.359781784548755 mean 33.323208213555056
+#nan 1
+i 170 time 3.3770153522491455 eps_crit 0.024356145423667187 0.03098356588048888 eps_conv 0.01213745909823015 0.031234072795287542
+min 12.646678002249233 mean 22.388721839155746
+#nan 0
+i 180 time 3.3953516483306885 eps_crit 0.025549550312835956 0.03306173604454638 eps_conv 0.023377616909567356 0.03151671032990328
+min 11.252866335319931 mean 17.20729753150735
+#nan 0
+i 190 time 3.3917925357818604 eps_crit 0.026406392602381226 0.035006385503981226 eps_conv 0.022664471539212815 0.03388965570082039
+min 9.198577166849425 mean 14.330376028540222
+#nan 0
+i 200 time 3.4051918983459473 eps_crit 0.027845885395787116 0.035056021612362945 eps_conv 0.022864770828676273 0.03374366734352029
+min 9.305065620772494 mean 13.61430931498422
+#nan 0
+Converged
+total time 2427.8339540958405
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0615e-02     R/r:   2.2452e+01     ι0:   1.5269e-01     p_axis-p_edge (estimate):   8.2116e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0700e-02     R/r:   2.2423e+01     ι0:   1.6275e-01     p_axis-p_edge (estimate):   7.6837e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1761e-02     R/r:   2.2620e+01     ι0:   1.5826e-01     p_axis-p_edge (estimate):   7.1185e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   8.0778e-03     R/r:   2.2789e+01     ι0:   1.4616e-01     p_axis-p_edge (estimate):   9.6465e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1097e-02     R/r:   2.2720e+01     ι0:   1.5749e-01     p_axis-p_edge (estimate):   8.2172e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1209e-02     R/r:   2.2709e+01     ι0:   1.4849e-01     p_axis-p_edge (estimate):   9.0576e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.3660e-02     R/r:   2.2388e+01     ι0:   1.5574e-01     p_axis-p_edge (estimate):   1.2659e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1006e-02     R/r:   2.3261e+01     ι0:   1.6170e-01     p_axis-p_edge (estimate):   6.3632e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1156e-02     R/r:   2.3286e+01     ι0:   1.5653e-01     p_axis-p_edge (estimate):   8.7756e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0830e-02     R/r:   2.3294e+01     ι0:   1.6229e-01     p_axis-p_edge (estimate):   9.3930e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   7.7151e-03     R/r:   2.3301e+01     ι0:   1.6146e-01     p_axis-p_edge (estimate):   7.0350e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   8.9167e-03     R/r:   2.3353e+01     ι0:   1.4946e-01     p_axis-p_edge (estimate):   6.5986e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0494e-02     R/r:   2.3434e+01     ι0:   1.7005e-01     p_axis-p_edge (estimate):   9.5068e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.7174e-03     R/r:   2.3452e+01     ι0:   1.5555e-01     p_axis-p_edge (estimate):   1.0235e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.9888e-03     R/r:   2.3446e+01     ι0:   1.5656e-01     p_axis-p_edge (estimate):   8.4295e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.3161e-02     R/r:   2.2819e+01     ι0:   1.4357e-01     p_axis-p_edge (estimate):   1.0660e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1430e-02     R/r:   2.3188e+01     ι0:   1.5151e-01     p_axis-p_edge (estimate):   8.8610e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1992e-02     R/r:   2.3529e+01     ι0:   1.6605e-01     p_axis-p_edge (estimate):   1.0528e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0646e-02     R/r:   2.2637e+01     ι0:   1.5894e-01     p_axis-p_edge (estimate):   8.6234e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0850e-02     R/r:   2.3561e+01     ι0:   1.5952e-01     p_axis-p_edge (estimate):   1.0187e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0844e-02     R/r:   2.3618e+01     ι0:   1.5371e-01     p_axis-p_edge (estimate):   9.0251e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1257e-02     R/r:   2.3630e+01     ι0:   1.5301e-01     p_axis-p_edge (estimate):   7.9156e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.2057e-02     R/r:   2.3645e+01     ι0:   1.5678e-01     p_axis-p_edge (estimate):   7.5436e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.2860e-02     R/r:   2.3642e+01     ι0:   1.6552e-01     p_axis-p_edge (estimate):   7.4746e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.4588e-03     R/r:   2.3668e+01     ι0:   1.5543e-01     p_axis-p_edge (estimate):   7.0690e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0089e-02     R/r:   2.3702e+01     ι0:   1.6357e-01     p_axis-p_edge (estimate):   8.6173e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.3452e-03     R/r:   2.3605e+01     ι0:   1.6372e-01     p_axis-p_edge (estimate):   7.3775e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   8.7450e-03     R/r:   2.3667e+01     ι0:   1.6747e-01     p_axis-p_edge (estimate):   8.7605e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.0484e-03     R/r:   2.3763e+01     ι0:   1.6182e-01     p_axis-p_edge (estimate):   6.6241e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0831e-02     R/r:   2.3515e+01     ι0:   1.7404e-01     p_axis-p_edge (estimate):   6.2522e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.3331e-02     R/r:   2.3204e+01     ι0:   1.6180e-01     p_axis-p_edge (estimate):   7.5633e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.7539e-03     R/r:   2.3776e+01     ι0:   1.5048e-01     p_axis-p_edge (estimate):   6.3980e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1145e-02     R/r:   2.3555e+01     ι0:   1.6301e-01     p_axis-p_edge (estimate):   7.5447e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   8.0341e-03     R/r:   2.3793e+01     ι0:   1.5950e-01     p_axis-p_edge (estimate):   8.9275e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0623e-02     R/r:   2.3838e+01     ι0:   1.4989e-01     p_axis-p_edge (estimate):   7.6427e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   9.4722e-03     R/r:   2.3151e+01     ι0:   1.4394e-01     p_axis-p_edge (estimate):   7.7790e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.0616e-02     R/r:   2.3854e+01     ι0:   1.5470e-01     p_axis-p_edge (estimate):   7.9517e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.5733e-02     R/r:   2.3138e+01     ι0:   1.5695e-01     p_axis-p_edge (estimate):   1.0920e-04     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+Δ:   1.1596e-02     R/r:   2.3465e+01     ι0:   1.5342e-01     p_axis-p_edge (estimate):   9.9648e-05     
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.

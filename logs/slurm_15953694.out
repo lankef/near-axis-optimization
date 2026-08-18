@@ -1,0 +1,53 @@
+Warming up primal JIT ...
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+  fun(x_fin) = 9.305048e+00  (468.90s)
+Warming up vmap'd finite-difference gradient ...
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+  ||grad|| = 1.079e+03  (compile+first eval 623.62s)
+  Second gradient eval: 4.565s
+
+Starting L-BFGS-B ...
+iter    0 | f = 9.201037e+00 | elapsed    24.2s
+iter    1 | f = 8.982979e+00 | elapsed    31.2s
+iter    2 | f = 8.909999e+00 | elapsed    38.0s
+iter    3 | f = 8.823532e+00 | elapsed    44.9s
+iter    4 | f = 8.755943e+00 | elapsed    51.8s
+iter    5 | f = 8.657435e+00 | elapsed    58.7s
+iter    6 | f = 8.473262e+00 | elapsed    65.6s
+iter    7 | f = 8.243900e+00 | elapsed    72.5s
+iter    8 | f = 7.756078e+00 | elapsed    79.4s
+iter    9 | f = 7.558717e+00 | elapsed    86.3s
+iter   10 | f = 7.552780e+00 | elapsed   104.7s
+iter   11 | f = 7.483524e+00 | elapsed   111.6s
+iter   12 | f = 7.393107e+00 | elapsed   118.5s
+iter   13 | f = 7.344810e+00 | elapsed   125.4s
+iter   14 | f = 7.315108e+00 | elapsed   132.3s
+iter   15 | f = 7.292602e+00 | elapsed   139.2s
+iter   16 | f = 7.280601e+00 | elapsed   146.0s
+iter   17 | f = 7.270574e+00 | elapsed   152.9s
+iter   18 | f = 7.251947e+00 | elapsed   159.8s
+iter   19 | f = 7.232066e+00 | elapsed   166.7s
+iter   20 | f = 7.224406e+00 | elapsed   173.5s
+iter   21 | f = 7.215875e+00 | elapsed   180.4s
+iter   22 | f = 7.214438e+00 | elapsed   273.2s
+iter   23 | f = 7.214430e+00 | elapsed   291.6s
+iter   24 | f = 7.214417e+00 | elapsed   327.2s
+iter   25 | f = 7.214393e+00 | elapsed   351.2s
+iter   26 | f = 7.213583e+00 | elapsed   358.1s
+iter   27 | f = 7.212836e+00 | elapsed   365.0s
+iter   28 | f = 7.211065e+00 | elapsed   377.7s
+iter   29 | f = 7.208965e+00 | elapsed   390.3s
+iter   30 | f = 7.207457e+00 | elapsed   460.2s
+iter   31 | f = 7.207416e+00 | elapsed   478.6s
+iter   32 | f = 7.207371e+00 | elapsed   496.9s
+iter   33 | f = 7.207371e+00 | elapsed   566.8s
+iter   34 | f = 3.293552e+27 | elapsed   694.1s
+
+Final objective: 3.293552e+27
+scipy message : CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

@@ -1,0 +1,103 @@
+Warming up primal JIT ...
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+  fun(x_fin) = 9.305048e+00  (167.88s)
+Warming up vmap'd finite-difference gradient ...
+Default interpolation method: cubic
+Solving for \bar{\iota}_0 self-consistently.
+Evaluating order 3 4
+Evaluating order 5 6
+  ||grad|| = 1.118e+03  (compile+first eval 568.05s)
+  Second gradient eval: 4.610s
+
+Starting L-BFGS-B ...
+iter    0 | f = 9.104177e+00 | elapsed    41.6s
+iter    1 | f = 8.962401e+00 | elapsed    48.5s
+iter    2 | f = 8.920860e+00 | elapsed    61.1s
+iter    3 | f = 8.867907e+00 | elapsed    68.0s
+iter    4 | f = 8.771223e+00 | elapsed    74.9s
+iter    5 | f = 8.734558e+00 | elapsed    87.6s
+iter    6 | f = 8.621386e+00 | elapsed    94.5s
+iter    7 | f = 8.490770e+00 | elapsed   101.4s
+iter    8 | f = 8.193504e+00 | elapsed   108.2s
+iter    9 | f = 7.997820e+00 | elapsed   120.9s
+iter   10 | f = 7.892770e+00 | elapsed   139.3s
+iter   11 | f = 7.848973e+00 | elapsed   152.0s
+iter   12 | f = 7.499703e+00 | elapsed   158.9s
+iter   13 | f = 7.453442e+00 | elapsed   171.5s
+iter   14 | f = 7.429114e+00 | elapsed   178.4s
+iter   15 | f = 7.420149e+00 | elapsed   191.0s
+iter   16 | f = 7.409685e+00 | elapsed   198.0s
+iter   17 | f = 7.398388e+00 | elapsed   204.9s
+iter   18 | f = 7.383714e+00 | elapsed   211.7s
+iter   19 | f = 7.372694e+00 | elapsed   218.6s
+iter   20 | f = 7.345311e+00 | elapsed   242.8s
+iter   21 | f = 7.338424e+00 | elapsed   255.5s
+iter   22 | f = 7.337582e+00 | elapsed   279.6s
+iter   23 | f = 7.327206e+00 | elapsed   286.5s
+iter   24 | f = 7.322027e+00 | elapsed   293.4s
+iter   25 | f = 7.321629e+00 | elapsed   317.6s
+iter   26 | f = 7.320960e+00 | elapsed   341.8s
+iter   27 | f = 7.315384e+00 | elapsed   360.2s
+iter   28 | f = 7.310215e+00 | elapsed   367.1s
+iter   29 | f = 7.307762e+00 | elapsed   385.5s
+iter   30 | f = 7.307263e+00 | elapsed   398.2s
+iter   31 | f = 7.307094e+00 | elapsed   416.6s
+iter   32 | f = 7.306826e+00 | elapsed   429.3s
+iter   33 | f = 7.306685e+00 | elapsed   453.4s
+iter   34 | f = 7.306641e+00 | elapsed   477.6s
+iter   35 | f = 7.306583e+00 | elapsed   507.5s
+iter   36 | f = 7.306452e+00 | elapsed   514.4s
+iter   37 | f = 7.306219e+00 | elapsed   521.3s
+iter   38 | f = 7.304926e+00 | elapsed   534.0s
+iter   39 | f = 7.304718e+00 | elapsed   540.9s
+iter   40 | f = 7.304696e+00 | elapsed   553.5s
+iter   41 | f = 7.303318e+00 | elapsed   560.4s
+iter   42 | f = 7.302183e+00 | elapsed   567.3s
+iter   43 | f = 7.302179e+00 | elapsed   591.5s
+iter   44 | f = 7.302134e+00 | elapsed   598.4s
+iter   45 | f = 7.301646e+00 | elapsed   611.1s
+iter   46 | f = 7.299647e+00 | elapsed   618.0s
+iter   47 | f = 7.298443e+00 | elapsed   630.6s
+iter   48 | f = 7.297731e+00 | elapsed   637.5s
+iter   49 | f = 7.296055e+00 | elapsed   644.4s
+iter   50 | f = 7.295270e+00 | elapsed   651.3s
+iter   51 | f = 7.293370e+00 | elapsed   664.0s
+iter   52 | f = 7.292850e+00 | elapsed   670.9s
+iter   53 | f = 7.291289e+00 | elapsed   677.8s
+iter   54 | f = 7.291099e+00 | elapsed   690.5s
+iter   55 | f = 7.288644e+00 | elapsed   703.1s
+iter   56 | f = 7.286962e+00 | elapsed   710.0s
+iter   57 | f = 7.286079e+00 | elapsed   716.9s
+iter   58 | f = 7.284488e+00 | elapsed   723.8s
+iter   59 | f = 7.284070e+00 | elapsed   736.4s
+iter   60 | f = 7.283198e+00 | elapsed   743.3s
+iter   61 | f = 7.282421e+00 | elapsed   756.0s
+iter   62 | f = 7.281161e+00 | elapsed   762.9s
+iter   63 | f = 7.279597e+00 | elapsed   769.8s
+iter   64 | f = 7.271456e+00 | elapsed   782.4s
+iter   65 | f = 7.264851e+00 | elapsed   789.3s
+iter   66 | f = 7.261606e+00 | elapsed   802.0s
+iter   67 | f = 7.257630e+00 | elapsed   808.9s
+iter   68 | f = 7.253228e+00 | elapsed   821.5s
+iter   69 | f = 7.251845e+00 | elapsed   834.2s
+iter   70 | f = 7.250466e+00 | elapsed   846.8s
+iter   71 | f = 7.246826e+00 | elapsed   853.7s
+iter   72 | f = 7.242608e+00 | elapsed   872.1s
+iter   73 | f = 7.237453e+00 | elapsed   884.8s
+iter   74 | f = 7.235345e+00 | elapsed   897.5s
+iter   75 | f = 7.231427e+00 | elapsed   910.1s
+iter   76 | f = 7.230619e+00 | elapsed   928.5s
+iter   77 | f = 7.227436e+00 | elapsed   935.4s
+iter   78 | f = 7.223528e+00 | elapsed   953.9s
+iter   79 | f = 7.223340e+00 | elapsed   966.5s
+iter   80 | f = 7.220874e+00 | elapsed   973.4s
+iter   81 | f = 7.219722e+00 | elapsed   986.1s
+iter   82 | f = 7.217549e+00 | elapsed   998.7s
+iter   83 | f = 7.217394e+00 | elapsed  1011.4s
+iter   84 | f = 7.217387e+00 | elapsed  1047.1s
+
+Final objective: 7.217387e+00
+scipy message : ABNORMAL: 

@@ -45,20 +45,23 @@ obj_jit = jax.jit(fun)
 # vmap'd central-difference gradient
 # ---------------------------------------------------------------------------
 @partial(jax.jit, static_argnames=("h",))
-def fd_grad(x_flat, h=1e-6):
+def fd_grad(x_flat, h=1e-7):
     """Central-difference gradient of `fun` at `x_flat`, batched via vmap.
 
     Builds a stack of 2N perturbed points x +/- h*e_i and evaluates `fun`
-    on all of them in a single vmap'd kernel. Compilation cost is one
-    primal JIT, and runtime is ~2N * (single primal cost / batching speedup).
-    Much cheaper than compiling reverse-mode AD through the order-6 graph.
+    on all of them in a single vmap'd kernel of width 2N (rather than two
+    width-N kernels), so the batching speedup applies across the full
+    x_plus/x_minus stack at once. Compilation cost is one primal JIT, and
+    runtime is ~2N * (single primal cost / batching speedup). Much cheaper
+    than compiling reverse-mode AD through the order-6 graph.
     """
     n = x_flat.shape[0]
     eye = jnp.eye(n, dtype=x_flat.dtype)
     x_plus = x_flat[None, :] + h * eye
     x_minus = x_flat[None, :] - h * eye
-    f_plus = jax.vmap(fun)(x_plus)
-    f_minus = jax.vmap(fun)(x_minus)
+    x_stack = jnp.concatenate([x_plus, x_minus], axis=0)
+    f_stack = jax.vmap(fun)(x_stack)
+    f_plus, f_minus = f_stack[:n], f_stack[n:]
     return (f_plus - f_minus) / (2.0 * h)
 
 

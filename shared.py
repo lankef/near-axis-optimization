@@ -34,7 +34,7 @@ target_aspect = 10.
 target_beta = 0.05
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-std_init = 0.15
+std_init = 0.1
 
 
 def spec_weight(n):
@@ -220,7 +220,7 @@ def divergence_rate(eq):
         rate_Delta_coef_cp,
         rate_p_perp_coef_cp,
     ])
-    return jnp.average(all_rates)
+    return jnp.max(all_rates)
 
 def eps_conv(eq):
     return 1 / divergence_rate(eq)

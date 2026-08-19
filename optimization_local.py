@@ -103,6 +103,11 @@ print(f"  Second gradient eval: {time.time() - t0:.3f}s")
 # ---------------------------------------------------------------------------
 # Optimization with scipy L-BFGS-B, using the vmap'd FD gradient.
 # ---------------------------------------------------------------------------
+n_local = []
+v_local = []
+x_local = []
+t_local = []
+time_init = time.time()
 class Callback:
     def __init__(self):
         self.n = 0
@@ -115,6 +120,10 @@ class Callback:
             f"iter {self.n:4d} | f = {val:.6e} | "
             f"elapsed {elapsed:7.1f}s"
         )
+        n_local.append(self.n)
+        v_local.append(val)
+        x_local.append(xk)
+        t_local.append(time.time()-time_init)
         self.n += 1
 
 
@@ -136,3 +145,4 @@ print(f"\nFinal objective: {fun_np(sol.x):.6e}")
 print(f"scipy message : {sol.message}")
 
 jnp.save("local_result", x_opt)
+jnp.save("local_conv", {'n': n_local, 'f': v_local, 'x': x_local, 't': t_local})

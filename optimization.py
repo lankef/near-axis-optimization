@@ -94,6 +94,7 @@ last_avg = np.inf
 
 # Ask-Eval-Tell loop
 time_init = time.time()
+t_list = []
 for i in range(num_generations):
     key, key_ask, key_eval = jax.random.split(key, 3)
 
@@ -112,6 +113,7 @@ for i in range(num_generations):
         data_dict = objective_vmap_full(population, w_aspect, w_anisotropy, w_iota, w_p)
         fitness_list.append(fitness.copy())
         i_list.append(i)
+        t_list.append(time.time() - time_init)
         fit_min = jnp.nanmin(fitness)
         fit_avg = jnp.nanmean(fitness)
         print(
@@ -156,6 +158,7 @@ sorted_population = population[argsort_fitness]
 jnp.save(path + 'population.npy', population)
 jnp.save(path + 'fitness.npy', fitness)
 jnp.save(path + 'fitness_list.npy', fitness_list)
+jnp.save(path + 'time_tot.npy', t_list)
 jnp.save(path + 'time_tot.npy', time_tot)
 
 best_i = np.nanargmin(fitness)
@@ -169,26 +172,25 @@ jnp.save(path + 'best_x.npy', best_x)
 plt.plot(fitness[argsort_fitness])
 plt.yscale('log')
 
-
-for i in range(len(sorted_fitness)):
-    if sorted_fitness[i]:
-        eq_fin = solve_order_6(jnp.array(sorted_population[i]), padded=False)
-        fin_anisotropy = rms_anisotropy(eq_fin)
-        fin_aspect = aspect_conv(eq_fin)
-        fin_eps_conv = eps_conv(eq_fin)
-        fin_iota = iota_axis(eq_fin)
-        p20_avg = jnp.real(jnp.average(eq_fin.p_perp[2][0].content))
-        p00_avg = jnp.real(jnp.average(eq_fin.p_perp[0][0].content))
-        p_edge_eff = (p00_avg + p20_avg*fin_eps_conv**2)
-        p_axis_eff = p00_avg
-        print(
-            'Δ:', f'{fin_anisotropy:>12.4e}', '    '
-            'R/r:', f'{fin_aspect:>12.4e}', '    '
-            'ι0:', f'{fin_iota:>12.4e}', '    '
-            'p_axis-p_edge (estimate):', f'{p_axis_eff - p_edge_eff:>12.4e}', '    '
-        )
-        pres_profile = eq_fin.p_perp.eval_eps(jnp.linspace(0, fin_eps_conv, 30), 0, 0)
-        plt.plot(pres_profile/jnp.max(pres_profile))
-        if fin_anisotropy and fin_aspect and fin_iota:
-            jnp.save(path + 'population_eq/eq'+str(i), eq_fin)
+# for i in range(len(sorted_fitness)):
+#     if sorted_fitness[i]:
+#         eq_fin = solve_order_6(jnp.array(sorted_population[i]), padded=False)
+#         fin_anisotropy = rms_anisotropy(eq_fin)
+#         fin_aspect = aspect_conv(eq_fin)
+#         fin_eps_conv = eps_conv(eq_fin)
+#         fin_iota = iota_axis(eq_fin)
+#         p20_avg = jnp.real(jnp.average(eq_fin.p_perp[2][0].content))
+#         p00_avg = jnp.real(jnp.average(eq_fin.p_perp[0][0].content))
+#         p_edge_eff = (p00_avg + p20_avg*fin_eps_conv**2)
+#         p_axis_eff = p00_avg
+#         print(
+#             'Δ:', f'{fin_anisotropy:>12.4e}', '    '
+#             'R/r:', f'{fin_aspect:>12.4e}', '    '
+#             'ι0:', f'{fin_iota:>12.4e}', '    '
+#             'p_axis-p_edge (estimate):', f'{p_axis_eff - p_edge_eff:>12.4e}', '    '
+#         )
+#         pres_profile = eq_fin.p_perp.eval_eps(jnp.linspace(0, fin_eps_conv, 30), 0, 0)
+#         plt.plot(pres_profile/jnp.max(pres_profile))
+#         if fin_anisotropy and fin_aspect and fin_iota:
+#             jnp.save(path + 'population_eq/eq'+str(i), eq_fin)
 

@@ -31,10 +31,10 @@ RZ_clip = 0.3 # fixing min and max R and Z coeffs to prevent crazy axes
 target_iota = 0.1
 target_anisotropy = 1e-2
 target_aspect = 25.
-target_beta = 0.05
+target_beta = 0.02
 population_size = 200
 w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
-std_init = 0.1
+std_init = 0.5
 
 
 def spec_weight(n):
@@ -290,13 +290,16 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
     B_denom_edge_eff = (B_denom_0 + B_denom_20*eps**2)
     # Effective pressure at the edge
     p20_avg = jnp.real(jnp.average(eq.p_perp[2][0].content))
+    p10_avg = jnp.real(jnp.average(eq.p_perp[1][0].content))
     p00_avg = jnp.real(jnp.average(eq.p_perp[0][0].content))
     p_edge_eff = (p00_avg + p20_avg*eps**2)
     p_axis_eff = p00_avg
-    # # beta_edge eff
-    # beta_axis_eff = p00_avg*B_denom_0
-    # beta_edge_eff = p_edge_eff*B_denom_edge_eff
-    B2_eff = 1/(B_denom_0 + B_denom_20 * eps**2)
+    # effective beta
+    p_eff_axis = jnp.real(eq.p_perp.eval_eps(eps=0, chi=0, phi=0))
+    p_eff_edge = jnp.real(eq.p_perp.eval_eps(eps=eps, chi=0, phi=0)) 
+    beta_eff = (p_eff_axis - p_eff_edge) * B_denom_0
+    
+    # Terms
     term1 = w_aspect * (
         jnp.maximum(aspect - target_aspect, 0) / target_aspect
     )**2
@@ -306,13 +309,16 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
     term3 = w_iota * (
         jnp.maximum(jnp.abs(target_iota) - jnp.abs(iota_a), 0) / target_iota
     )**2
-    # term4 = w_p * (
-    #     jnp.maximum(p20_avg, 0) / p20_avg
-    # )**2
     term4 = w_p * (
-        jnp.maximum(p_edge_eff - p_axis_eff, 0) / p_axis_eff
+        jnp.maximum(- beta_eff, 0) * 1000
     )**2
-    out = term1 + term2 + term3 + term4
+    # term4 = w_p * (
+    #     jnp.maximum(p20_avg * eps**2, 0) / p00_avg
+    # )**2
+    # term5 = w_p * (
+    #     jnp.maximum(p10_avg * eps, 0) / p00_avg
+    # )**2
+    out = term1 + term2 + term3 + term4 #  + term5
     if full_mode:
         return {
             'eps_crit': eps_crit_val,

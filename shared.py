@@ -292,8 +292,6 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
     p20_avg = jnp.real(jnp.average(eq.p_perp[2][0].content))
     p10_avg = jnp.real(jnp.average(eq.p_perp[1][0].content))
     p00_avg = jnp.real(jnp.average(eq.p_perp[0][0].content))
-    p_edge_eff = (p00_avg + p20_avg*eps**2)
-    p_axis_eff = p00_avg
     # effective beta
     p_eff_axis = jnp.real(eq.p_perp.eval_eps(eps=0, chi=0, phi=0))
     p_eff_edge = jnp.real(eq.p_perp.eval_eps(eps=eps, chi=0, phi=0)) 
@@ -310,7 +308,7 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
         jnp.maximum(jnp.abs(target_iota) - jnp.abs(iota_a), 0) / target_iota
     )**2
     term4 = w_p * (
-        jnp.maximum(- beta_eff, 0) * 1000
+        jnp.maximum(- beta_eff, 0) * 10000
     )**2
     # term4 = w_p * (
     #     jnp.maximum(p20_avg * eps**2, 0) / p00_avg
@@ -325,8 +323,9 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
             'eps_conv': eps_conv_val,
             'aspect': aspect,
             'anisotropy': anisotropy,
-            'p_edge_eff': p_edge_eff,
-            'p_axis_eff': p_axis_eff,
+            'p_eff_axis': p_eff_axis,
+            'p_eff_edge': p_eff_edge,
+            'beta_eff': beta_eff,
             'iota_a': iota_a,
             'loss': out,
         }

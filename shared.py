@@ -33,7 +33,7 @@ target_anisotropy = 1e-2
 target_aspect = 25.
 target_beta = 0.02
 population_size = 200
-w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 1.
+w_aspect, w_anisotropy, w_iota, w_p = 6., 0.5, 1., 100000.
 std_init = 0.5
 
 
@@ -308,7 +308,7 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
         jnp.maximum(jnp.abs(target_iota) - jnp.abs(iota_a), 0) / target_iota
     )**2
     term4 = w_p * (
-        jnp.maximum(- beta_eff, 0) * 10000
+        jnp.maximum(- beta_eff, 0)
     )**2
     # term4 = w_p * (
     #     jnp.maximum(p20_avg * eps**2, 0) / p00_avg

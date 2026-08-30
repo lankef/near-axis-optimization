@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Scan population.npy for the lowest-aspect member with positive beta_eff."""
+"""Scan population.npy for the lowest-aspect member with positive p_grad_max_eff."""
 
 import argparse
 import time
@@ -17,12 +17,13 @@ def metrics(x_flat):
     psi_crit, _, _ = eq.get_psi_crit()
     eps = jnp.minimum(eps_conv(eq), jnp.sqrt(psi_crit))
     aspect = eq.aspect_ratio_eps(eps)
+    # effective beta
     p_eff_axis = jnp.real(eq.p_perp.eval_eps(eps=0, chi=0, phi=0))
-    p_eff_edge = jnp.real(eq.p_perp.eval_eps(eps=eps, chi=0, phi=0))
-    # eq.B_denom[0] is a ChiPhiFunc(Padded), not a scalar; B0 is the axis value.
-    B_denom_0 = jnp.real(in_dict["B0"])
-    beta_eff = (p_eff_axis - p_eff_edge) * B_denom_0
-    return aspect, beta_eff
+    p_eff_edge = jnp.real(eq.p_perp.eval_eps(eps=eps, chi=0, phi=0)) 
+    eps_profile = jnp.linspace(0, eps, 10)
+    p_eff_prof = jnp.real(eq.p_perp.eval_eps(eps=eps_profile, chi=jnp.zeros(10), phi=jnp.zeros(10))) 
+    p_grad_max_eff = jnp.max(jnp.gradient(p_eff_prof) * 10) # eps_max * partial p / partial eps
+    return aspect, p_grad_max_eff
 
 
 metrics_jit = jax.jit(metrics)
@@ -31,8 +32,8 @@ metrics_jit = jax.jit(metrics)
 def parse_args():
     parser = argparse.ArgumentParser(
         description=(
-            "Evaluate aspect and beta_eff for every member of population.npy "
-            "and save the x with the lowest aspect among those with beta_eff > 0."
+            "Evaluate aspect and p_grad_max_eff for every member of population.npy "
+            "and save the x with the lowest aspect among those with p_grad_max_eff > 0."
         )
     )
     parser.add_argument(
@@ -68,7 +69,7 @@ def main():
     aspect0 = float(aspect0)
     beta0 = float(beta0)
     print(
-        f"  i {0:4d}  aspect {aspect0:.8e}  beta_eff {beta0:.8e}  "
+        f"  i {0:4d}  aspect {aspect0:.8e}  p_grad_max_eff {beta0:.8e}  "
         f"({time.time() - t0:.2f}s, includes compile)"
     )
 
@@ -82,25 +83,25 @@ def main():
 
     for i in range(1, n):
         t1 = time.time()
-        aspect, beta_eff = metrics_jit(population[i])
+        aspect, p_grad_max_eff = metrics_jit(population[i])
         aspect = float(aspect)
-        beta_eff = float(beta_eff)
+        p_grad_max_eff = float(p_grad_max_eff)
         print(
-            f"  i {i:4d}  aspect {aspect:.8e}  beta_eff {beta_eff:.8e}  "
+            f"  i {i:4d}  aspect {aspect:.8e}  p_grad_max_eff {p_grad_max_eff:.8e}  "
             f"({time.time() - t1:.2f}s)"
         )
         if (
             np.isfinite(aspect)
-            and np.isfinite(beta_eff)
-            and beta_eff > 0
+            and np.isfinite(p_grad_max_eff)
+            and p_grad_max_eff > 0
             and aspect < best_aspect
         ):
             best_i = i
             best_aspect = aspect
-            best_beta = beta_eff
+            best_beta = p_grad_max_eff
 
     if best_i is None:
-        print("No member with finite aspect and positive beta_eff. Nothing saved.")
+        print("No member with finite aspect and positive p_grad_max_eff. Nothing saved.")
         return
 
     best_x = np.asarray(population[best_i])
@@ -110,11 +111,11 @@ def main():
         {
             "index": best_i,
             "aspect": best_aspect,
-            "beta_eff": best_beta,
+            "p_grad_max_eff": best_beta,
         },
     )
     print(
-        f"Best: i={best_i}  aspect={best_aspect:.8e}  beta_eff={best_beta:.8e}\n"
+        f"Best: i={best_i}  aspect={best_aspect:.8e}  p_grad_max_eff={best_beta:.8e}\n"
         f"Saved {args.out_x} and {args.out_metrics}"
     )
 

@@ -117,11 +117,12 @@ for i in range(num_generations):
         fit_min = jnp.nanmin(fitness)
         fit_avg = jnp.nanmean(fitness)
         print(
-            'i', i,
-            'time', time2-time1, 
-            'eps_crit', jnp.nanmin(data_dict['eps_crit']), jnp.nanmax(data_dict['eps_crit']), 
-            'eps_conv', jnp.nanmin(data_dict['eps_conv']), jnp.nanmax(data_dict['eps_conv']),
-            'beta_eff', jnp.nanmin(data_dict['beta_eff']), jnp.nanmax(data_dict['beta_eff']),
+            'i             ', i,
+            '\ntime          ', time2-time1, 
+            '\neps_crit      ', jnp.nanmin(data_dict['eps_crit']), jnp.nanmax(data_dict['eps_crit']), 
+            '\neps_conv      ', jnp.nanmin(data_dict['eps_conv']), jnp.nanmax(data_dict['eps_conv']),
+            '\nbeta_eff      ', jnp.nanmin(data_dict['beta_eff']), jnp.nanmax(data_dict['beta_eff']),
+            '\np_grad_max_eff', jnp.nanmin(data_dict['p_grad_max_eff']), jnp.nanmax(data_dict['p_grad_max_eff']),
         )
         print('min', fit_min, 'mean', fit_avg)
         print('#nan', np.sum(np.isnan(fitness)))

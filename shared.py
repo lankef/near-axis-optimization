@@ -295,6 +295,9 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
     # effective beta
     p_eff_axis = jnp.real(eq.p_perp.eval_eps(eps=0, chi=0, phi=0))
     p_eff_edge = jnp.real(eq.p_perp.eval_eps(eps=eps, chi=0, phi=0)) 
+    eps_profile = jnp.linspace(0, eps, 10)
+    p_eff_prof = jnp.real(eq.p_perp.eval_eps(eps=eps_profile, chi=jnp.zeros(10), phi=jnp.zeros(10))) 
+    p_grad_max_eff = jnp.max(jnp.gradient(p_eff_prof) * 10) # eps_max * partial p / partial eps
     beta_eff = (p_eff_axis - p_eff_edge) * B_denom_0
     
     # Terms
@@ -308,7 +311,7 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
         jnp.maximum(jnp.abs(target_iota) - jnp.abs(iota_a), 0) / target_iota
     )**2
     term4 = w_p * (
-        jnp.maximum(- beta_eff, 0)
+        jnp.maximum(p_grad_max_eff * B_denom_0, 0)
     )**2
     # term4 = w_p * (
     #     jnp.maximum(p20_avg * eps**2, 0) / p00_avg
@@ -326,6 +329,8 @@ def objective(x_flat, w_aspect, w_anisotropy, w_iota, w_p, m, full_mode=False, p
             'p_eff_axis': p_eff_axis,
             'p_eff_edge': p_eff_edge,
             'beta_eff': beta_eff,
+            'p_eff_prof': p_eff_prof,
+            'p_grad_max_eff': p_grad_max_eff,
             'iota_a': iota_a,
             'loss': out,
         }
